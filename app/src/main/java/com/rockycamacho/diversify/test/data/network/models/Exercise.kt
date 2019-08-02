@@ -1,7 +1,10 @@
 package com.rockycamacho.diversify.test.data.network.models
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Exercise(
     @field:Json(name = "exercise")
     val name: String? = null,
@@ -11,4 +14,4 @@ data class Exercise(
     val imageUrl: String? = null,
     @field:Json(name = "targetMuscles")
     val targetMuscles: List<Muscle> = listOf()
-)
+): Parcelable

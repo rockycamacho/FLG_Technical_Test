@@ -3,6 +3,8 @@ package com.rockycamacho.diversify.test.di
 import android.app.Application
 import dagger.Module
 import dagger.Provides
+import java.io.File
+import javax.inject.Named
 import javax.inject.Singleton
 
 @OpenForTesting

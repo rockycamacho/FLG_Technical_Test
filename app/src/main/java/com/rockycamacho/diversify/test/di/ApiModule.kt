@@ -17,8 +17,6 @@ import javax.inject.Singleton
 @Module
 class ApiModule(private val apiEndpoint: String) {
 
-
-
     @Singleton
     @Provides
     fun apiService(
@@ -37,11 +35,9 @@ class ApiModule(private val apiEndpoint: String) {
     @Singleton
     @Provides
     fun okHttpClient(
-        @Named("http-cache") cacheFile: File,
         httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
-            .cache(Cache(cacheFile, 10 * 1024 * 1024))
             .addNetworkInterceptor(httpLoggingInterceptor) //NOTE: should always be the last interceptor
             .build()
 
