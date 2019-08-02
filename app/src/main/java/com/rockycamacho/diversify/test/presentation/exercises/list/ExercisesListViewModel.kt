@@ -13,17 +13,19 @@ import javax.inject.Inject
 class ExercisesListViewModel @Inject constructor(val apiService: ApiService) : BaseViewModel() {
 
     protected val data = MutableLiveData<List<Exercise>>()
+    protected val errorMessage = MutableLiveData<String>()
 
     fun fetchData() {
         apiService.getExercises()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { showLoading(true) }
-            .doOnSuccess { showLoading(false) }
-            .doOnError { showLoading(false) }
+            .doOnTerminate { showLoading(false) }
             .subscribe({ data ->
                 show(data)
+                showError("")
             }, { e ->
+                e.message?.let { showError(it) }
                 Timber.e(e)
             })
     }
@@ -34,6 +36,14 @@ class ExercisesListViewModel @Inject constructor(val apiService: ApiService) : B
 
     fun show(data: List<Exercise>) {
         this.data.value = data
+    }
+
+    fun getErrorMessage(): LiveData<String> {
+        return errorMessage
+    }
+
+    fun showError(error: String) {
+        this.errorMessage.value = error
     }
 
 

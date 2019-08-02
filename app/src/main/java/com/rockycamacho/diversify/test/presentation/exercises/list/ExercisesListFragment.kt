@@ -2,6 +2,7 @@ package com.rockycamacho.diversify.test.presentation.exercises.list
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -56,6 +57,11 @@ class ExercisesListFragment : BaseFragment<ExercisesListViewModel>() {
                 empty.visibility = View.GONE
             }
             adapter.submitList(it)
+        })
+        viewModel.getErrorMessage().observe(this, Observer {
+            if(it.isNotEmpty()) {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
         })
         viewModel.fetchData()
     }

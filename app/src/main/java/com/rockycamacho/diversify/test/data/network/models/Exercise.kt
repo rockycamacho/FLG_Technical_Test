@@ -1,9 +1,11 @@
 package com.rockycamacho.diversify.test.data.network.models
 
 import android.os.Parcelable
+import com.rockycamacho.diversify.test.di.OpenForTesting
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
+@OpenForTesting
 @Parcelize
 data class Exercise(
     @field:Json(name = "exercise")
