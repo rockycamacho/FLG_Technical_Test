@@ -19,7 +19,8 @@ class ExercisesListViewModel @Inject constructor(val apiService: ApiService) : B
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { showLoading(true) }
-            .doOnTerminate { showLoading(false) }
+            .doOnSuccess { showLoading(false) }
+            .doOnError { showLoading(false) }
             .subscribe({ data ->
                 show(data)
             }, { e ->

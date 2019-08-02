@@ -9,7 +9,7 @@ import com.rockycamacho.diversify.test.di.AppComponent
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val appComponent = DiversifyTestApp[this].appComponent
+        val appComponent = DiversifyTestApp[this].getAppComponent()
         injectDependencies(appComponent)
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)

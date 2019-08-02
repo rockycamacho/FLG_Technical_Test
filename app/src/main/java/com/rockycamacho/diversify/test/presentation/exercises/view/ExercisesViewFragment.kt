@@ -46,11 +46,11 @@ class ExercisesViewFragment : BaseFragment<ExercisesViewViewModel>() {
         viewModel.show(exercise!!)
         viewModel.getExercise().observe(this, Observer {
 
-            name.text = exercise.name
+            exercise_name.text = exercise.name
             Glide.with(this@ExercisesViewFragment)
                 .load(exercise.imageUrl)
-                .into(image)
-            description.text = exercise.description
+                .into(exercise_image)
+            exercise_description.text = exercise.description
             adapter.submitList(it.targetMuscles)
         })
     }

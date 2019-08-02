@@ -26,7 +26,7 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
     abstract fun getLayoutResId(): Int
 
     override fun onAttach(context: Context) {
-        val appComponent = DiversifyTestApp[context].appComponent
+        val appComponent = DiversifyTestApp[context].getAppComponent()
         injectDependencies(appComponent)
         super.onAttach(context)
     }

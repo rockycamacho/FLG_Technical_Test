@@ -6,7 +6,7 @@ import com.rockycamacho.diversify.test.di.*
 import timber.log.Timber
 
 class DiversifyTestApp : Application() {
-    lateinit var appComponent: AppComponent
+    private lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -25,6 +25,12 @@ class DiversifyTestApp : Application() {
             .apiModule(ApiModule(BuildConfig.API_ENDPOINT))
             .build()
     }
+
+    fun setAppComponent(component: AppComponent) {
+        appComponent = component
+    }
+
+    fun getAppComponent(): AppComponent = appComponent
 
     companion object {
         operator fun get(context: Context): DiversifyTestApp =
